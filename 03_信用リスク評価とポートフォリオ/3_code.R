@@ -1,55 +1,55 @@
-#”»•Ê•ªÍ
+#åˆ¤åˆ¥åˆ†æ
 
-#ƒ‰ƒCƒuƒ‰ƒŠ[MASS‚Ì“Ç‚İ‚İ
+#ãƒ©ã‚¤ãƒ–ãƒ©ãƒªãƒ¼MASSã®èª­ã¿è¾¼ã¿
 library(MASS) 
 
-#ƒf[ƒ^‚Ì“Ç‚İ
-X <- read.csv("fukusou.csv",row.names=1, header = T)@
+#ãƒ‡ãƒ¼ã‚¿ã®èª­ã¿è¾¼
+X <- read.csv("fukusou.csv",row.names=1, header = T)ã€€
 
-#”»•Ê•ªÍ
-res <- lda(Ši•t~‹æ•ª1+‹æ•ª2+‘Ø”[Šz+‘Ø”[“ú”+‘Ø”[‰ñ”+”„ã+æˆøŒ+‘Ø”[Š„‡,X) 
+#åˆ¤åˆ¥åˆ†æ
+res <- lda(æ ¼ä»˜~åŒºåˆ†1+åŒºåˆ†2+æ»ç´é¡+æ»ç´æ—¥æ•°+æ»ç´å›æ•°+å£²ä¸Š+å–å¼•æœˆ+æ»ç´å‰²åˆ,X) 
 
-#”»•Ê“¾“_ƒqƒXƒgƒOƒ‰ƒ€‚ğ‘‚­
-#Proportion of trace:‚©‚çALD1 ‚É‘å‚«‚È”»•Ê—Í
+#åˆ¤åˆ¥å¾—ç‚¹ãƒ’ã‚¹ãƒˆã‚°ãƒ©ãƒ ã‚’æ›¸ã
+#Proportion of trace:ã‹ã‚‰ã€LD1 ã«å¤§ããªåˆ¤åˆ¥åŠ›
 res
 
-#æˆøæ‚²‚Æ‚Ì”»•ÊŒ‹‰Ê
+#å–å¼•å…ˆã”ã¨ã®åˆ¤åˆ¥çµæœ
 res2 <- predict(res) 
 res2
 
-#À•ª—Ş‚Æ”»•ÊŒ‹‰Ê‚ÌƒNƒƒX•\
-cls <- table(X$Ši•t,res2$class) 
+#å®Ÿåˆ†é¡ã¨åˆ¤åˆ¥çµæœã®ã‚¯ãƒ­ã‚¹è¡¨
+cls <- table(X$æ ¼ä»˜,res2$class) 
 
-#‘ÎŠpü‚É‚Ç‚ê‚¾‚¯æ‚¹‚ç‚ê‚Ä‚¢‚é‚©H
+#å¯¾è§’ç·šã«ã©ã‚Œã ã‘ä¹—ã›ã‚‰ã‚Œã¦ã„ã‚‹ã‹ï¼Ÿ
 cls[row(cls)==col(cls)]
-#‘S‘Ì
+#å…¨ä½“
 sum(cls) 
-#”»•Ê³‰ğ—¦‚ğZo
+#åˆ¤åˆ¥æ­£è§£ç‡ã‚’ç®—å‡º
 sum(cls[row(cls)==col(cls)])/sum(cls) 
-#Œë”»•Ê—¦‚ğZo
+#èª¤åˆ¤åˆ¥ç‡ã‚’ç®—å‡º
 sum(cls[row(cls)!=col(cls)])/sum(cls) 
 
-#Šé‹Æ‚²‚Æ‚ÌÀŠi•t‚Æ”»•ÊŒ‹‰Êˆê——
-data.frame(row.names =row.names(X),ÀŠi•t=X$Ši•t,”»•ÊŒ‹‰Ê=res2$class) 
+#ä¼æ¥­ã”ã¨ã®å®Ÿæ ¼ä»˜ã¨åˆ¤åˆ¥çµæœä¸€è¦§
+data.frame(row.names =row.names(X),å®Ÿæ ¼ä»˜=X$æ ¼ä»˜,åˆ¤åˆ¥çµæœ=res2$class) 
 
 
-#‰ñ‹A•ªÍ‚ÉŠî‚Ã‚«—LŒø‚Èw•Wi•Ï”j‚Ì‘I‘ğ
-lm(Ši•t~‹æ•ª1+‹æ•ª2+‘Ø”[Šz+‘Ø”[“ú”+‘Ø”[‰ñ”+”„ã+æˆøŒ+‘Ø”[Š„‡, data=X)
+#å›å¸°åˆ†æã«åŸºã¥ãæœ‰åŠ¹ãªæŒ‡æ¨™ï¼ˆå¤‰æ•°ï¼‰ã®é¸æŠ
+lm(æ ¼ä»˜~åŒºåˆ†1+åŒºåˆ†2+æ»ç´é¡+æ»ç´æ—¥æ•°+æ»ç´å›æ•°+å£²ä¸Š+å–å¼•æœˆ+æ»ç´å‰²åˆ, data=X)
 
-#•Ï”‘Œ¸–@‚É‚æ‚é•Ï”‘I‘ğ
-h <- step(lm(Ši•t~‹æ•ª1+‹æ•ª2+‘Ø”[Šz+‘Ø”[“ú”+‘Ø”[‰ñ”+”„ã+æˆøŒ+‘Ø”[Š„‡, data=X))
+#å¤‰æ•°å¢—æ¸›æ³•ã«ã‚ˆã‚‹å¤‰æ•°é¸æŠ
+h <- step(lm(æ ¼ä»˜~åŒºåˆ†1+åŒºåˆ†2+æ»ç´é¡+æ»ç´æ—¥æ•°+æ»ç´å›æ•°+å£²ä¸Š+å–å¼•æœˆ+æ»ç´å‰²åˆ, data=X))
 summary(h)
 
-#‘I‘ğ‚³‚ê‚½w•W‚¾‚¯‚ğ—p‚¢‚½”»•Ê•ªÍ
-res3 <- lda(Ši•t~‘Ø”[“ú”+‹æ•ª1+‘Ø”[Š„‡+‹æ•ª2+æˆøŒ+‘Ø”[Šz,X)
+#é¸æŠã•ã‚ŒãŸæŒ‡æ¨™ã ã‘ã‚’ç”¨ã„ãŸåˆ¤åˆ¥åˆ†æ
+res3 <- lda(æ ¼ä»˜~æ»ç´æ—¥æ•°+åŒºåˆ†1+æ»ç´å‰²åˆ+åŒºåˆ†2+å–å¼•æœˆ+æ»ç´é¡,X)
 
-#æˆøæ‚²‚Æ‚Ì”»•ÊŒ‹‰Ê
+#å–å¼•å…ˆã”ã¨ã®åˆ¤åˆ¥çµæœ
 res4 <- predict(res3)  
-#ÀŠi•t‚Æ”»•ÊŒ‹‰Ê‚ÌƒNƒƒX•\
-cls2 <- table(X$Ši•t,res4$class)
-#”»•Ê³‰ğ—¦‚ğZo
+#å®Ÿæ ¼ä»˜ã¨åˆ¤åˆ¥çµæœã®ã‚¯ãƒ­ã‚¹è¡¨
+cls2 <- table(X$æ ¼ä»˜,res4$class)
+#åˆ¤åˆ¥æ­£è§£ç‡ã‚’ç®—å‡º
 sum(cls2[row(cls2)==col(cls2)])/sum(cls2) 
-#Œë”»•Ê—¦‚ğZo
+#èª¤åˆ¤åˆ¥ç‡ã‚’ç®—å‡º
 sum(cls2[row(cls2)!=col(cls2)])/sum(cls2) 
 
 
@@ -59,14 +59,14 @@ testResult<-predict(res3,train)
 data.frame(testResult$x[,1],train[,9])
 
 
-##æˆøŠz‚ğ‰¼‚Éİ’è‚·‚é
+##å–å¼•é¡ã‚’ä»®ã«è¨­å®šã™ã‚‹
 XX <- data.frame(X,sample(c(1:5000), 498, replace=TRUE))
 
 Result <- predict(res3,XX)
 pre <- data.frame(XX, Result$class, Result$x[,1],rownames(pre))
-names(pre)[10] <- "”NæˆøŠz" 
-names(pre)[11] <- "—\‘ªŠi•t" 
-names(pre)[12] <- "—\‘ª"
+names(pre)[10] <- "å¹´å–å¼•é¡" 
+names(pre)[11] <- "äºˆæ¸¬æ ¼ä»˜" 
+names(pre)[12] <- "äºˆæ¸¬"
 names(pre)[13] <- "name"
 
 library(ggplot2)
@@ -79,31 +79,29 @@ library(plyr)
 ##range
 cols <- c("4" = "dodgerblue4", "3" = "dodgerblue3", "2" = "lightsteelblue1", "1" = "lightslategrey")
 ##plot
-ggplot(pre, aes(—\‘ª, ”NæˆøŠz,color=—\‘ªŠi•t)) +
+ggplot(pre, aes(äºˆæ¸¬, å¹´å–å¼•é¡,color=äºˆæ¸¬æ ¼ä»˜)) +
   geom_vline(xintercept=0,colour = "black",alpha=0.3,linetype="dashed") + 
   geom_hline(yintercept=1000,colour = "black",alpha=0.3,linetype="dashed") + 
   geom_point(alpha=0.7) + 
   labs(title="") + 
-  xlab("—\‘ª") +
-  ylab("”NæˆøŠz(ç‰~)") + 
+  xlab("äºˆæ¸¬") +
+  ylab("å¹´å–å¼•é¡(åƒå††)") + 
   scale_colour_manual(values = cols)+
   theme_classic(base_family="HiraKakuProN-W3") 
 
 ##plot2
-ggplot(pre, aes(—\‘ª, ”NæˆøŠz,color=—\‘ªŠi•t)) +
+ggplot(pre, aes(äºˆæ¸¬, å¹´å–å¼•é¡,color=äºˆæ¸¬æ ¼ä»˜)) +
   geom_vline(xintercept=0,colour = "black",alpha=0.3,linetype="dashed") + 
   geom_hline(yintercept=1000,colour = "black",alpha=0.3,linetype="dashed") + 
   geom_point(alpha=0.7) + 
   labs(title="") + 
-  xlab("—\‘ª") +
-  ylab("”NæˆøŠz(ç‰~)") + 
+  xlab("äºˆæ¸¬") +
+  ylab("å¹´å–å¼•é¡(åƒå††)") + 
   scale_colour_manual(values = cols)+
-  geom_text_repel(data=subset(pre, ”NæˆøŠz >= 3000 & —\‘ª >= 2),
-                  aes(x=—\‘ª,y=”NæˆøŠz, label = name),
+  geom_text_repel(data=subset(pre, å¹´å–å¼•é¡ >= 3000 & äºˆæ¸¬ >= 2),
+                  aes(x=äºˆæ¸¬,y=å¹´å–å¼•é¡, label = name),
                   col = "black", size = 2.5,segment.color = NA ,
                   family = "HiraKakuPro-W3")+
-  annotate("rect",xmin=2, xmax=max(pre$—\‘ª), ymin=3000, ymax=max(pre$”NæˆøŠz),
+  annotate("rect",xmin=2, xmax=max(pre$äºˆæ¸¬), ymin=3000, ymax=max(pre$å¹´å–å¼•é¡),
            alpha=0.2, fill="red") +
   theme_classic(base_family="HiraKakuProN-W3") 
-
-
