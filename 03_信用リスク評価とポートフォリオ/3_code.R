@@ -4,12 +4,12 @@
 library(MASS) 
 
 #データの読み込
-X <- read.csv("fukusou.csv",row.names=1, header = T)　
+#setwd("C:/Users/mkeig/Desktop/R-seminar-2018/03_信用リスク評価とポートフォリオ")
+X <- read.csv("取引データ.csv",row.names=1, header = T)　
 
 #判別分析
 res <- lda(格付~区分1+区分2+滞納額+滞納日数+滞納回数+売上+取引月+滞納割合,X) 
 
-#判別得点ヒストグラムを書く
 #Proportion of trace:から、LD1 に大きな判別力
 res
 
