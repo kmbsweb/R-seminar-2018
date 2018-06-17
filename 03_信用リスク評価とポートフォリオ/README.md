@@ -205,8 +205,8 @@ saveWorkbook(wb, "products.xlsx", overwrite = TRUE)
 ![](https://github.com/kmbsweb/R-seminar-2018/blob/master/03_%E4%BF%A1%E7%94%A8%E3%83%AA%E3%82%B9%E3%82%AF%E8%A9%95%E4%BE%A1%E3%81%A8%E3%83%9D%E3%83%BC%E3%83%88%E3%83%95%E3%82%A9%E3%83%AA%E3%82%AA/pic/cap3.JPG)
 
 ### Git利用のすすめ
-プログラミング言語を用いてチーム全体で作業していくのにGitHubの利用がおすすめです。[pdf](https://github.com/kmbsweb/R-seminar-2018/blob/master/03_%E4%BF%A1%E7%94%A8%E3%83%AA%E3%82%B9%E3%82%AF%E8%A9%95%E4%BE%A1%E3%81%A8%E3%83%9D%E3%83%BC%E3%83%88%E3%83%95%E3%82%A9%E3%83%AA%E3%82%AA/pic/cap4.JPG) 
+プログラミング言語を用いてチーム全体で作業していくのにGitHubの利用がおすすめです。[pdf](https://github.com/kmbsweb/R-seminar-2018/blob/master/03_%E4%BF%A1%E7%94%A8%E3%83%AA%E3%82%B9%E3%82%AF%E8%A9%95%E4%BE%A1%E3%81%A8%E3%83%9D%E3%83%BC%E3%83%88%E3%83%95%E3%82%A9%E3%83%AA%E3%82%AA/pic/cap4.JPG?raw=true) 
 
 ### reference
-Doing Data Science: Straight Talk from the FrontlineNov 3, 2013
-by Cathy O'Neil and Rachel Schutt
+Cathy O'Neil and Rachel Schutt(2013):Doing Data Science-Straight Talk.   
+金明哲・董彦文(2015):経営と信用リスクのデータ科学,共立出版.  
