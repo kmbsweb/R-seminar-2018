@@ -1,6 +1,6 @@
 ## 信用リスク評価とポートフォリオ
 
-*目的*  
+`目的` 
 -　判別式を用いたリスク評価  
 -　ポートフォリオを作成する  
 -　クロス集計の自動化  
@@ -28,7 +28,7 @@ Atman(1968)が判別分析を倒産企業判別に適用したことに倣い下
 信用調査会社に問い合わせたものの、金額が高い上、個人事業主の情報は当然のごとく充実していないため、あまり役に立たたないのではないかと感じている。  
 現状としては、社内に下記のような取引データは蓄積されている。  
   
-
+- 説明変数
 `取引先区分 企業（ダミー）`  
 `取引先区分 個人（ダミー）`  
 `滞納額`  
@@ -38,7 +38,9 @@ Atman(1968)が判別分析を倒産企業判別に適用したことに倣い下
 `滞納割合（滞納平均額/売上合計値）`  
 `取引月数（売上が発生した月数）`  
 ※標準化処理を施している。  
-
+  
+- 目的変数
+`社内格付`
 
 ### 判別分析
 
@@ -168,3 +170,36 @@ ggplot(pre, aes(予測, 年取引額,color=予測格付)) +
 ![](https://github.com/kmbsweb/R-seminar-2018/blob/master/03_%E4%BF%A1%E7%94%A8%E3%83%AA%E3%82%B9%E3%82%AF%E8%A9%95%E4%BE%A1%E3%81%A8%E3%83%9D%E3%83%BC%E3%83%88%E3%83%95%E3%82%A9%E3%83%AA%E3%82%AA/pic/cap2.JPG)
 
 ### クロス集計の自動化
+```R
+#install package
+install.packages("openxlsx")
+install.packages("doBy")
+library(openxlsx)
+library(doBy)
+
+#test data
+data1 <- read.csv(url("http://stat.columbia.edu/~rachel/datasets/nyt1.csv"))
+
+# categorize
+head(data1)
+data1$agecat <-cut(data1$Age,c(-Inf,0,18,24,34,44,54,64,Inf))
+
+# view
+summary(data1)
+# function
+# 複数処理したい場合は+でつなぐ
+siterange <- function(x){c(sd(x), min(x), mean(x), max(x))}
+A <- summaryBy(Age~agecat, data =data1, FUN=siterange)
+
+# ワークブックインスタンスの生成
+wb <- createWorkbook()
+# ワークシートの追加
+addWorksheet(wb, 'test')
+# データの出力
+writeData(wb, sheet = 1, rowNames = T, A)
+# 書式（フォントサイズ、カラー、フォント名）
+modifyBaseFont(wb, fontSize = 11, fontColour = "#000000", fontName = "MS PGothic")
+# 保存
+saveWorkbook(wb, "products.xlsx", overwrite = TRUE)
+```
+![](https://github.com/kmbsweb/R-seminar-2018/blob/master/03_%E4%BF%A1%E7%94%A8%E3%83%AA%E3%82%B9%E3%82%AF%E8%A9%95%E4%BE%A1%E3%81%A8%E3%83%9D%E3%83%BC%E3%83%88%E3%83%95%E3%82%A9%E3%83%AA%E3%82%AA/pic/cap2.JPG)

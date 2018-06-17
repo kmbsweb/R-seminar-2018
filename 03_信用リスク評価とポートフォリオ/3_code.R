@@ -63,12 +63,13 @@ data.frame(testResult$x[,1],train[,9])
 XX <- data.frame(X,sample(c(1:5000), 498, replace=TRUE))
 
 Result <- predict(res3,XX)
-pre <- data.frame(XX, Result$class, Result$x[,1],rownames(pre))
+pre <- data.frame(XX, Result$class, Result$x[,1],rownames(XX))
 names(pre)[10] <- "年取引額" 
 names(pre)[11] <- "予測格付" 
 names(pre)[12] <- "予測"
 names(pre)[13] <- "name"
 
+install.packages("rlang")
 library(ggplot2)
 library(ggrepel)
 library(ggthemes)
