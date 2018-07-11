@@ -7,7 +7,8 @@
 
 ### 形態素解析について
 - 
-- 
+- ダウンロード
+  [こちら](http://taku910.github.io/mecab/#install-windows)よりRmecabをダウンロードする必要があります。  
 
 ### wordcloud
 
@@ -17,10 +18,10 @@ Radの歌詞を可視化
 
   
 - 歌詞  
-`最大公約数`  
-`me me she`  
-`前前前世`  
-`有心論`  
+`最大公約数`  [youtube](https://www.youtube.com/watch?v=cDpL4-UEs5s)  
+`me me she`   [youtube](https://www.youtube.com/watch?v=wvvItrHEfRA)   
+`前前前世`  [youtube](https://www.youtube.com/watch?v=PDSkFeMVNFs)  
+`有心論`   [youtube](https://www.youtube.com/watch?v=c2y8Ba3WwPY)  
 ※原文そのままをテキスト化。  
   
 
@@ -52,7 +53,7 @@ par(family = "HiraKakuProN-W3")
 #scale=c(3,1):c(文字の大きさ,文字間隔）を指定
 #random.order＝FALSE：FALSEで頻度順に中心から描画
 wordcloud(res1$Term, res1$Freq, colors = brewer.pal(8, "Dark2"),
-          scale=c(3,1),min.freq=90,random.color=FALSE,random.order=FALSE)
+          scale=c(3,1),min.freq=90,random.color=FALSE)
 ```
 
 ![](https://github.com/kmbsweb/R-seminar-2018/blob/master/04_%E5%BD%A2%E6%85%8B%E7%B4%A0%E8%A7%A3%E6%9E%90%E3%81%A8%E3%83%A2%E3%83%87%E3%83%AA%E3%83%B3%E3%82%B0/text/result.png)
