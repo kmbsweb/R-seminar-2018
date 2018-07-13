@@ -58,9 +58,10 @@ wordcloud(res1$Term, res1$Freq, colors = brewer.pal(8, "Dark2"),
 
 ![](https://github.com/kmbsweb/R-seminar-2018/blob/master/04_%E5%BD%A2%E6%85%8B%E7%B4%A0%E8%A7%A3%E6%9E%90%E3%81%A8%E3%83%A2%E3%83%87%E3%83%AA%E3%83%B3%E3%82%B0/text/result.png)
 
-###SVMを用いた業種分類モデル  
+### SVMを用いた業種分類モデル  
 
-![](https://github.com/kmbsweb/R-seminar-2018/blob/master/04_%E5%BD%A2%E6%85%8B%E7%B4%A0%E8%A7%A3%E6%9E%90%E3%81%A8%E3%83%A2%E3%83%87%E3%83%AA%E3%83%B3%E3%82%B0/text/data_set.png)
+<img src="https://github.com/kmbsweb/R-seminar-2018/blob/master/04_%E5%BD%A2%E6%85%8B%E7%B4%A0%E8%A7%A3%E6%9E%90%E3%81%A8%E3%83%A2%E3%83%87%E3%83%AA%E3%83%B3%E3%82%B0/text/data_set.png" width="320px">
+
 
 ```R
 target <- read.csv("test1.csv", header=T, fileEncoding="Shift_JIS",,as.is =T)
@@ -105,7 +106,7 @@ result <- data.frame(target[c(5,20,30,70,120),],
                      predict(svmp_1, test))
 ```
 
-###過学習を回避する
+### 過学習を回避する
 モデルを修正していく。
 
 ```R
