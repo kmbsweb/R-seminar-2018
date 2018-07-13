@@ -6,16 +6,19 @@
 -　SVMを用いた業種分類モデルの構築  
 
 ### 形態素解析について
-- 
-- ダウンロード
+形態素解析（morphological analysis）は、自然言語処理の手法の一つで、ある文章やセンテンスを「意味を持つ最小限の単位（＝単語）」に分解することです。テキストマイニングを行う際によく利用されています。  
+例えば、以下のような文があった場合、斜線部で区切られます。文章を一つ一つ品詞分解していくイメージです。  
+> 明日/は/阪急/で/梅田駅/に/行き/ます。
+  
+今回は、Rmecabと呼ばれる形態素解析をサポートしているパッケージを用います。以下のサイトよりダウロードして、進めていきます。
+- ダウンロード  
   [こちら](http://taku910.github.io/mecab/#install-windows)よりRmecabをダウンロードする必要があります。  
 
 ### wordcloud
-
+形態素解析により分解された文章を可視化する手法として*word cloud*パッケージがよく利用されます。頻出度が高いキーワードを大きくしたり、色を変えたりすることも可能です。
 
 ### 例題
-Radの歌詞を可視化
-
+具体例として、Radwimpsの歌詞（4曲）に対して形態素解析をほどこし、可視化してみたいと思います。Radwimpsの曲は、言葉遊びも多く、歌詞が奥深いという意見も聞かれます。Radwimpsの歌詞が支持される理由やどういう世界観で歌詞が作られているのかを考察するためには、まず形態素解析を行い可視化してみるのが良いかと思います。
   
 - 歌詞  
 `最大公約数`  [youtube](https://www.youtube.com/watch?v=cDpL4-UEs5s)  
@@ -24,8 +27,7 @@ Radの歌詞を可視化
 `有心論`   [youtube](https://www.youtube.com/watch?v=c2y8Ba3WwPY)  
 ※原文そのままをテキスト化。  
   
-
-
+  
 ### 形態素解析と可視化
 ここでは、実際にRのコマンドを実行する。
 
@@ -60,7 +62,7 @@ wordcloud(res1$Term, res1$Freq, colors = brewer.pal(8, "Dark2"),
 
 ### SVMを用いた業種分類モデル  
 
-<img src="https://github.com/kmbsweb/R-seminar-2018/blob/master/04_%E5%BD%A2%E6%85%8B%E7%B4%A0%E8%A7%A3%E6%9E%90%E3%81%A8%E3%83%A2%E3%83%87%E3%83%AA%E3%83%B3%E3%82%B0/text/data_set.png" width="320px">
+<img src="https://github.com/kmbsweb/R-seminar-2018/blob/master/04_%E5%BD%A2%E6%85%8B%E7%B4%A0%E8%A7%A3%E6%9E%90%E3%81%A8%E3%83%A2%E3%83%87%E3%83%AA%E3%83%B3%E3%82%B0/text/data_set.png" width="500px">
 
 
 ```R
@@ -141,6 +143,7 @@ result <- data.frame(target[c(5,20,30,70,120),],
                      predict(svm_2, test),
                      predict(svmp_2, test))
 ```
+少ないキーワードで業種分類をすることができるようになった。ただ、今回のケースではモデルが大幅に改善したというわけではない。サンプル数が少ない中では、変数をなるべく少なくしてモデル構築すること方が良いと思われる。  
 
 ### reference
 Cathy O'Neil and Rachel Schutt(2013):Doing Data Science-Straight Talk.   
