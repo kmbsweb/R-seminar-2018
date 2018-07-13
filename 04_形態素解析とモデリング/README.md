@@ -58,7 +58,88 @@ wordcloud(res1$Term, res1$Freq, colors = brewer.pal(8, "Dark2"),
 
 ![](https://github.com/kmbsweb/R-seminar-2018/blob/master/04_%E5%BD%A2%E6%85%8B%E7%B4%A0%E8%A7%A3%E6%9E%90%E3%81%A8%E3%83%A2%E3%83%87%E3%83%AA%E3%83%B3%E3%82%B0/text/result.png)
 
+###SVMを用いた業種分類モデル  
 
+![](https://github.com/kmbsweb/R-seminar-2018/blob/master/04_%E5%BD%A2%E6%85%8B%E7%B4%A0%E8%A7%A3%E6%9E%90%E3%81%A8%E3%83%A2%E3%83%87%E3%83%AA%E3%83%B3%E3%82%B0/text/data_set.png)
+
+```R
+target <- read.csv("test1.csv", header=T, fileEncoding="Shift_JIS",,as.is =T)
+
+#第1引数:ファイル名
+#col:対象とする列
+#type=0は意味を持たない文字数、type=1は意味を持つ塊りでみる
+res <- docDF(target, col = 2, type=1, N=1,pos = c("名詞"), Genkei = 1, nDF = 1)
+res$sum <- rowSums(res[,4:162])    
+res2 <- subset(res,res$sum >= 10 )
+
+FRM <- data.frame(t(res2))
+FRM <- FRM[-1:-3,]
+FRM <- FRM[-160,]
+FRM <- cbind(target,FRM)
+
+FRM <- FRM[,-1:-2]
+res2$N1
+
+#データを2つに分ける
+train <- FRM[c(-5,-20,-30,-70,-120),]
+test <- FRM[c(5,20,30,70,120),]
+
+
+#SVMのパッケージ
+install.packages("kernlab")
+library(kernlab)
+
+#SVM
+#C-svc C classification
+svm_1 <- ksvm(家賃保証~. , data=train, type="C-svc")
+svmp_1 <- ksvm(家賃保証~. , data=train)
+
+#でき上がったモデルを確認
+svm_1
+svmp_1
+
+predict(svm_1, test)
+predict(svmp_1, test)
+result <- data.frame(target[c(5,20,30,70,120),],
+                     predict(svm_1, test),
+                     predict(svmp_1, test))
+```
+
+###過学習を回避する
+モデルを修正していく。
+
+```R
+#モデルの修正
+res2 <- subset(res,res$sum >= 10 )
+text <- c("クレジット","リース", "不動産" ,"仲介" ,"住宅",
+          "保証","借主","家賃","賃料","債権","賃貸" )
+res3 <- subset(res2,N1 %in% text)
+
+FRM <- data.frame(t(res3))
+FRM <- FRM[-1:-3,]
+FRM <- FRM[-160,]
+FRM <- cbind(target,FRM)
+
+FRM <- FRM[,-1:-2]
+
+#データを2つに分ける
+train <- FRM[c(-5,-20,-30,-70,-120),]
+test <- FRM[c(5,20,30,70,120),]
+
+#SVM
+svm_2 <- ksvm(家賃保証~. , data=train,  type="C-svc")
+svmp_2 <- ksvm(家賃保証~. , data=train)
+
+#でき上がったモデルを確認
+svm_2
+svmp_2
+
+predict(svm_2, test)
+predict(svmp_2, test)
+result <- data.frame(target[c(5,20,30,70,120),],
+                     predict(svm_2, test),
+                     predict(svmp_2, test))
+```
 
 ### reference
 Cathy O'Neil and Rachel Schutt(2013):Doing Data Science-Straight Talk.   
