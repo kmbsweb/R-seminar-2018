@@ -9,7 +9,7 @@
 |5回目|9.29 Sat.|各自発表（30分～40分程度）　　   　　|
 |6回目|10.14 Sun.|Exploratory Data Analysis    |
 |7回目|11.11 Sun.|program    |
-|8回目|12.9 Sun.|Modeling regression    |
+|8回目|12.15 Sat.|Modeling regression    |
 ※8月は夏休み
 
 ### テーマ
