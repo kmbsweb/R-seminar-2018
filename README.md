@@ -10,6 +10,7 @@
 |6回目|10.14 Sun.|Exploratory Data Analysis    |
 |7回目|11.11 Sun.|program    |
 |8回目|12.15 Sat.|Modeling regression    |
+|9回目|1.12 Sat.|supervised classification machine learning   |
 ※8月は夏休み
 
 ### テーマ
